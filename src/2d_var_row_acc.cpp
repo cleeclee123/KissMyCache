@@ -5,12 +5,14 @@
 
 #define CACHE_SIZE 4096
 #define SET_ASSOCIATIVITY 1
-#define BLOCK_SIZE 16
+#define BLOCK_SIZE 4
 
-#define N 54
-#define STARTING_ADDRESS 0x7F61000
+#define N 74
+#define STARTING_ADDRESS 0x8D93000
 
-#define DATA_TYPE short
+#define DATA_TYPE char
+
+#define OUTER_LOOP 10
 
 unsigned int cache_miss_count(unsigned int cache_size) {
   unsigned int sets = cache_size / (SET_ASSOCIATIVITY * BLOCK_SIZE);
@@ -22,7 +24,7 @@ unsigned int cache_miss_count(unsigned int cache_size) {
 
   unsigned int misses = 0;
 
-  for (int n = 0; n < 10; n++) {
+  for (int n = 0; n < OUTER_LOOP; n++) {
     for (int i = 0; i < N; i++) {
       for (int j = 0; j < N; j++) {
         unsigned int address = STARTING_ADDRESS + (i * N + j) * sizeof(DATA_TYPE);

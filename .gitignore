@@ -1,0 +1,7 @@
+*.class
+*.sm
+*.a
+*.o
+*.exe
+*.out
+*.vcd
